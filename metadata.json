@@ -1,0 +1,8 @@
+{
+  "name": "HablaIA",
+  "description": "Plataforma líder en generación de video con actores de IA colombianos y acentos regionales auténticos.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
