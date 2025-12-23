@@ -4,36 +4,31 @@ import { supabase } from './supabase'
 function App() {
   const [mensaje, setMensaje] = useState('Haz clic para probar la conexión')
 
-  const probarBaseDeDatos = async () => {
+  const probarConexion = async () => {
     setMensaje('Enviando datos...')
     
-    // Usamos 'titulo' y 'guion_texto' porque así están en tu tabla de Supabase
+    // Usamos los nombres que tú creaste en tus tablas
     const { error } = await supabase
       .from('scripts')
       .insert([{ 
-        titulo: 'Mi primer guion', 
-        guion_texto: 'Este contenido ahora sí coincide con la tabla' 
+        titulo: 'Prueba de conexión', 
+        guion_texto: 'Si lees esto, tu Studio IA ya funciona' 
       }])
 
     if (error) {
-      setMensaje('Ups, algo falló: ' + error.message)
+      setMensaje('Error todavía: ' + error.message)
     } else {
-      setMensaje('¡Perfecto! Conexión exitosa y datos guardados en Supabase.')
+      setMensaje('¡LO LOGRASTE! Ya está conectado correctamente.')
     }
   }
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', fontFamily: 'sans-serif', backgroundColor: '#f4f7f6' }}>
-      <div style={{ padding: '40px', backgroundColor: 'white', borderRadius: '15px', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', textAlign: 'center' }}>
-        <h1 style={{ color: '#4f46e5' }}>Estudio HablaIA</h1>
-        <p style={{ marginBottom: '25px', color: '#666', fontSize: '1.1rem' }}>{mensaje}</p>
-        <button 
-          onClick={probarBaseDeDatos}
-          style={{ padding: '12px 24px', backgroundColor: '#4f46e5', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold' }}
-        >
-          Probar Conexión
-        </button>
-      </div>
+    <div style={{ textAlign: 'center', marginTop: '50px', fontFamily: 'sans-serif' }}>
+      <h1>Estudio HablaIA</h1>
+      <p>{mensaje}</p>
+      <button onClick={probarConexion} style={{ padding: '10px 20px', cursor: 'pointer' }}>
+        Probar Conexión Real
+      </button>
     </div>
   )
 }
